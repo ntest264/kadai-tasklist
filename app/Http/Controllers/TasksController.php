@@ -8,7 +8,7 @@ use App\Task;
 
 class TasksController extends Controller
 {
-    // getでmessages/にアクセスされた場合の「一覧表示処理」
+    // getでtasks/にアクセスされた場合の「一覧表示処理」
     public function index()
     {
         // タスク一覧を取得
@@ -32,9 +32,15 @@ class TasksController extends Controller
    
     public function store(Request $request)
     {
+        $request->validate([
+            'status'=>'required|max:10',
+            'content'=>'required',
+            ]);
+        
          // タスクを作成
         $task = new Task;
         $task->content = $request->content;
+        $task->status = $request->status;
         $task->save();
 
         // トップページへリダイレクトさせる
@@ -43,7 +49,7 @@ class TasksController extends Controller
 
     public function show($id)
     {
-        // idの値でメッセージを検索して取得
+        // idの値でタスクを検索して取得
         $task = Task::findOrFail($id);
 
         // タスク詳細ビューでそれを表示
