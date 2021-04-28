@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <h1>id: {{$task='/tasklist/resources/views/tasks/edit.blade.php' }} のタスク編集ページ</h1>
+    <h1>id: {{ $task->id }} のタスク編集ページ</h1>
 
     <div class="row">
         <div class="col-6">
