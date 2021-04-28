@@ -2,12 +2,12 @@
 
 @section('content')
 
-<h1>id = {{ $task->id }} のメッセージ詳細ページ</h1>
+<h1>id = {{ $message='/tasklist/resources/views/tasks/show.blade.php' }} のメッセージ詳細ページ</h1>
 
     <table class="table table-bordered">
         <tr>
             <th>id</th>
-            <td>{{ $task->id }}</td>
+            <td>{{ '/tasklist/resources/views/tasks/show.blade.php' }}</td>
         </tr>
         <tr>
             <th>タスク</th>
@@ -15,7 +15,7 @@
         </tr>
     </table>
      {{-- タスク編集ページへのリンク --}}
-    {!! link_to_route('tasks.edit', 'このタスクを編集', ['task' => $task->id], ['class' => 'btn btn-light']) !!}
+    {!! link_to_route('tasks.edit', 'このタスクを編集', ['/tasklist/resources/views/tasks/edit.blade.php'], ['class' => 'btn btn-light']) !!}
 
      {{-- タスク削除フォーム --}}
     {!! Form::model($task, ['route' => ['tasks.destroy', $task->id], 'method' => 'delete']) !!}

@@ -3,11 +3,11 @@
 @section('content')
 
 
-    <h1>id: {{ $task->id }} のメッセージ編集ページ</h1>
+    <h1>id: {{$task='/tasklist/resources/views/tasks/edit.blade.php' }} のタスク編集ページ</h1>
 
     <div class="row">
         <div class="col-6">
-            {!! Form::model($task, ['route' => ['tasks.update', $task->id], 'method' => 'put']) !!}
+            {!! Form::model($task, ['route' => ['tasks.update','/tasklist/resources/views/tasks/edit.blade.php'], 'method' => 'put']) !!}
 
                 <div class="form-group">
                     {!! Form::label('content', 'タスク:') !!}

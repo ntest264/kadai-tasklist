@@ -10,22 +10,20 @@
                 <tr>
                     <th>id</th>
                     <th>タスク</th>
+                    <th>ステータス</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($tasks as $task)
                 <tr>
-                    <td>{{ $task->id }}</td>
-                    <td>{{ $task->content }}</td>
+                   <td>{!! link_to_route('tasks.show','/home/ubuntu/environment/tasklist/resources/views/tasks/show.blade.php', ['task' => $task->id]) !!}</td>
+                   <td>{{ $task->content }}</td>
                 </tr>
-                @endforeach
-            </tbody>
-        </table>
-
+                  @endforeach
 @endif
 
     {{-- タスク作成ページへのリンク --}}
-    {!! LINK_TO_ROUTE('tasks.create', '新規タスクの投稿', [], ['class' => 'btn btn-primary']) !!}
+    {!! link_to_route('tasks.create', '新規タスクの投稿', [], ['class' => 'btn btn-primary']) !!}
 
 
 @endsection
