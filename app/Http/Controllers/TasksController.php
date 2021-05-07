@@ -21,8 +21,9 @@ class TasksController extends Controller
                 'tasks' => $tasks,
             ];
         }
+         
             // タスク一覧ビューでそれを表示
-        return view('welcome', $data);
+        return view('tasks.index', $data);
     }
     
     public function create()
@@ -56,10 +57,15 @@ class TasksController extends Controller
     {
         // idの値でタスクを検索して取得
         $task = Task::findOrFail($id);
+        // 認証済みユーザ（閲覧者）がそのタスクの所有者である場合は、タスクを閲覧
+         if (\Auth::id() === $task->user_id) {
         // タスク詳細ビューでそれを表示
         return view('tasks.show', [
             'task' => $task,
         ]);
+         }
+        // トップページへリダイレクトさせる
+        return redirect('/');
     }
 
     
@@ -68,13 +74,15 @@ class TasksController extends Controller
         // idの値でタスクを検索して取得
         $task = Task::findOrFail($id);
          // 認証済みユーザ（閲覧者）がその投稿の所有者である場合は、投稿を編集
-         if (\Auth::id() === $tasklist->user_id) {
+         if (\Auth::id() === $task->user_id) {
     
         // タスク編集ビューでそれを表示
         return view('tasks.edit', [
             'task' => $task,
         ]);
         }
+         // トップページへリダイレクトさせる
+        return redirect('/');
     }
 
     public function update(Request $request, $id)
